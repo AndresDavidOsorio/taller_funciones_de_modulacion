@@ -1,0 +1,51 @@
+#**************************************************** ZONA DE FUNCIONES**********************************************
+
+def solicitar_el_lote():
+    return int(input("Ingrese la cantidad de unidades producidas en el lote: "))
+
+def revisar_unidades(lote_numero):
+    resultado = input(f"Ingrese el resultado de la unidad {lote_numero} (D=Defectuosa, O=OK): ")
+    return resultado
+
+def pasar_lotes():
+    total_defectuosos = 0
+    total_ok = 0
+    total_unidades = 0
+    fallos = []
+
+    while True:
+        lote = solicitar_el_lote()
+        if lote == 0:
+            break
+        
+        for i in range(1, lote + 1):
+            resultado = revisar_unidades(i)
+
+            if resultado == 'D':
+                total_defectuosos += 1
+                
+            elif resultado == 'O':
+                total_ok += 1
+            else:
+                print("NO ES APROADO EL RESULTADO")
+        total_unidades += lote
+        print(f"Lote con {lote} unidades. la cantidad de defectuosas fue de : {total_defectuosos}, y las OK fue de: {total_ok}")
+
+    return total_defectuosos, total_ok, fallos, total_unidades
+
+def mostrar_resultados(defectuosos, ok, fallos, total_unidades):
+    porcentaje_defectuosos = (defectuosos / total_unidades) * 100 if total_unidades > 0 else 0
+    print("\nResultados finales:")
+    print(f"Total de unidades defectuosas: {defectuosos}")
+    print(f"Total de unidades OK: {ok}")
+    print(f"Porcentaje de defectuosas: {porcentaje_defectuosos:}%")
+
+    if fallos:
+        print("\nRegistros de fallos de calidad:")
+        for fallo in fallos:
+            print(fallo)
+
+#*************** ZONA PRINCIPAL ***************
+defectuosos, ok, fallos, total_unidades = pasar_lotes() 
+mostrar_resultados(defectuosos, ok, fallos, total_unidades)
+
