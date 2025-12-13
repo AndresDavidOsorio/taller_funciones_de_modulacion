@@ -1,0 +1,47 @@
+#*************** ZONA DE FUNCIONES ***************
+
+def saber_transaccion():
+    tipo = input("Ingrese tipo de transacción (D=Depósito, R=Retiro, FIN=Salir): ")
+    return tipo
+
+def pedir_monto():
+    return float(input("Ingrese el monto: "))
+
+def Procesar_la_transaccion():
+    saldo = 1000
+    transacciones_validas = 0
+
+    while True:
+        tipo = saber_transaccion()
+
+        if tipo == "FIN":
+            break
+              #comparamos si son diferentes a las letras registradas para devolver el valor 
+        if tipo != "D" and tipo != "R":
+            print("Tipo de transacción no válido")
+            
+        monto = pedir_monto()
+        
+        if tipo == "D":
+            saldo += monto
+            transacciones_validas += 1
+            print("Depósito realizado")
+
+        elif tipo == "R":
+            if saldo - monto >= 0:
+                saldo -= monto
+                transacciones_validas += 1
+                print("Retiro realizado")
+            else:
+                print("Saldo insuficiente")
+    return saldo, transacciones_validas
+def mostrar_resultados(saldo, transacciones):
+    print("\nESTADO DE CUENTA:")
+    print("Saldo:", saldo)
+    print("Transacciones realizadas:", transacciones)
+
+
+#****************************** ZONA PRINCIPAL ************************************
+
+saldo_final, total_transacciones = Procesar_la_transaccion()
+mostrar_resultados(saldo_final, total_transacciones)
