@@ -1,0 +1,43 @@
+#*************** ZONA DE FUNCIONES ***************
+
+def pedir_codigo():
+    return input("Ingrese el código de acceso (o SALIR para terminar): ")
+
+def controlar_accesos():
+    codigo_correcto = "INV-001"
+    accesos_permitidos = 0
+    accesos_denegados = 0
+    registros = [] #se crea una lista para los intentos de ingreso
+
+    while True:
+        if accesos_denegados == 5:
+            print("\nSe alcanzó el límite de intentos")
+            break
+        codigo = pedir_codigo()
+        if codigo == "SALIR":
+            break
+        
+        if codigo == codigo_correcto:
+            accesos_permitidos += 1
+            
+            print("Acceso permitido")
+        else:
+            accesos_denegados += 1
+            print("Acceso denegado (Intento", accesos_denegados, "de 5)")
+
+    return accesos_permitidos, accesos_denegados, registros
+
+def mostrar_resultados(permitidos, denegados, registros):
+    print("\nbase de intentos :")
+    print("numero de  intentos permitidos:", permitidos)
+    print("numero de intentos que fueron denegados:", denegados)
+
+    if registros:
+        print("\nRegistros de accesos exitosos:")
+        for reg in registros:
+            print(reg)
+
+#*************** ZONA PRINCIPAL ***************
+
+permitidos, denegados, registros = controlar_accesos()
+mostrar_resultados(permitidos, denegados, registros)
