@@ -1,0 +1,37 @@
+#*************** ZONA DE FUNCIONES ***************
+
+def pedir_nota():
+    return int(input("diga la puntuacion del platillo (1 a 5, 0 como demasiado malo): "))
+
+def guardar_puntaje():
+    total = 0
+    suma = 0
+    perfectos = [] 
+    while True:
+        nota = pedir_nota()
+        if nota == 0:
+            break
+        if nota < 1 or nota > 5:
+            print("eliga la puntuacion entre 1 a 5 porfavor")
+            continue
+        total += 1
+        suma += nota
+        if nota == 5:
+            return total, suma, perfectos
+
+def mostrar_resultados(total, suma, perfectos):
+    print("\nResultados:")
+    print("Pedidos procesados:", total)
+    print("Puntuación total:", suma)
+
+    if perfectos:
+        print("Pedidos perfectos:")
+        for p in perfectos:
+            print("Pedido", p)
+    else:
+        print("No hubo pedidos perfectos")
+
+#*************** ZONA PRINCIPAL ***************
+
+total, suma, perfectos = guardar_puntaje()
+mostrar_resultados(total, suma, perfectos)
