@@ -1,0 +1,43 @@
+#*************** ZONA DE FUNCIONES ***************
+
+def pedir_precio():
+    return float(input("Ingrese el precio del producto: "))
+
+def pedir_cantidad():
+    return int(input("Ingrese la cantidad: "))
+
+def compra():
+    subtotal = 0
+
+    while True:
+        precio = pedir_precio()
+
+        if precio == 0:
+            break
+
+        cantidad = pedir_cantidad()
+        subtotal += precio * cantidad
+
+    descuento = descuento(subtotal)
+    monto_descuento = subtotal * descuento
+    total_pagar = subtotal - monto_descuento
+
+    return subtotal, descuento, total_pagar
+
+
+def mostrarcompresultados(subtotal, descuento, total):
+    print("\nResumen de la compra:")
+    print("Subtotal:", subtotal)
+
+    if descuento > 0:
+        print("Descuento aplicado:", int(descuento * 100), "%")
+    else:
+        print("No se aplicó descuento")
+
+    print("Total a pagar:", total)
+
+
+#*********************************************** ZONA PRINCIPAL *************************************
+
+subtotal, descuento, total = compra()
+mostrarcompresultados(subtotal, descuento, total)
