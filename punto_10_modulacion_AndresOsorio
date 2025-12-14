@@ -1,0 +1,35 @@
+#*****************************************ZONA DE DEFINICIÓN DE FUNCIONES************************
+
+def leer_horas_extra():
+    return int(input("Ingrese horas extra trabajadas: "))
+
+def medir_bono(horas):
+    if horas > 5:
+        return horas * 15
+    else:
+        return horas * 10
+
+def calcular_bonos():
+    total_bonificacion = 0
+    empleados_bonificados = 0
+
+    while True:
+        horas = leer_horas_extra()
+
+        if horas < 0:
+            break
+
+        if horas > 0:
+            bonificacion = medir_bono(horas)
+            total_bonificacion += bonificacion
+            empleados_bonificados += 1
+
+    return total_bonificacion, empleados_bonificados
+
+def mostrar_resultados(total, empleados):
+    print("Total pagado en bonificaciones: ", total)
+    print("Empleados bonificados:", empleados)
+
+#*********************************ZONA DE CÓDIGO PRINCIPAL**********************************
+resultados = calcular_bonos()
+mostrar_resultados(*resultados)
