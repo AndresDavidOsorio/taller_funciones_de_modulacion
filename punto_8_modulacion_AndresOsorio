@@ -1,0 +1,44 @@
+#************************************************* ZONA DE DEFINICIÓN DE FUNCIONES **************************
+def leer_edad():
+    return int(input("Ingrese la edad del participante, (0 para terminar)"))
+
+def publico_obj(edad):
+
+    return 25 <= edad <= 45 
+def revisar_encuesta():
+    total = 0
+    suma_edades = 0
+    publico_objetivo = 0
+    registro = ""
+
+    while True:
+        edad = leer_edad()
+
+        if edad == 0:
+            break
+
+        total += 1
+        suma_edades += edad
+
+        if publico_obj(edad):
+            publico_objetivo += 1
+            registro += f"Edad registrada: {edad}\n"
+
+    promedio = suma_edades / total if total > 0 else 0
+
+    return total, publico_objetivo, promedio, registro
+
+def mostrar_resultados(total, objetivo, promedio, registro):
+    print("Total de participantes:", total)
+    print("Público objetivo:", objetivo)
+    print("Edad promedio:", promedio)
+
+    if registro:
+        print("\nEdades del público objetivo:")
+        print(registro)
+
+#******************************************ZONA DE CÓDIGO PRINCIPAL***********************************
+
+resultados = revisar_encuesta()
+mostrar_resultados(*resultados)
+
