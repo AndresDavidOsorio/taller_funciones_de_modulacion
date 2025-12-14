@@ -1,0 +1,34 @@
+#***********************************************ZONA DE DEFINICIÓN DE FUNCIONES*******************************
+
+def uso_del_cpu():
+    return float(input("Ingrese el uso de CPU : "))
+
+def uso_cpu_critico(uso_cpu):
+    return uso_cpu > 90
+
+def mostrar_alerta():
+    print("estado Crítico")
+
+def monitorear_cpu():
+    meidicones = 0
+    numero_alertas = 0
+
+    while True:
+        uso = uso_del_cpu()
+
+        if uso < 0:
+            break
+
+        meidicones += 1
+
+        if uso_cpu_critico(uso):
+            mostrar_alerta()
+            numero_alertas += 1
+
+    return meidicones, numero_alertas
+
+#************************************************* ZONA DE CÓDIGO PRINCIPAL****************************************
+total, alertas = monitorear_cpu()
+print("Cantidad total de mediciones:", total)
+print("Cantidad de alertas críticas:", alertas)
+
