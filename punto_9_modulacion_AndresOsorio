@@ -1,0 +1,43 @@
+#****************************ZONA DE DEFINICIÓN DE FUNCIONES******************************
+
+def leer_venta():
+    return int(input("Ingrese la cantidad vendida: "))
+
+def actualizar_stock(stock, venta):
+    return stock - venta
+
+def requiere_reposicion(stock, punto_reposicion):
+    return stock <= punto_reposicion
+
+def controlar_inventario(stock_inicial, punto_reposicion):
+    stock = stock_inicial
+    aviso = ""
+
+    while True:
+        venta = leer_venta()
+
+        if venta <= 0:
+            break
+
+        stock = actualizar_stock(stock, venta)
+
+        if requiere_reposicion(stock, punto_reposicion):
+            aviso = "Reposición Urgente"
+            break
+    return stock, aviso
+
+def mostrar_resultado(stock, aviso):
+    print("\ninventario")
+    print("Stock final:", stock)
+
+    if aviso:
+        print(aviso)
+        
+# *****************************ZONA DE CÓDIGO PRINCIPAL*****************************
+
+stock_inicial = 50
+punto_reposicion = 10
+
+resultado = controlar_inventario(stock_inicial, punto_reposicion)
+mostrar_resultado(*resultado)
+
