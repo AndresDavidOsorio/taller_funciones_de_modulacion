@@ -1,0 +1,31 @@
+#*****************************************ZONA DE DEFINICIÓN DE FUNCIONES********************************
+def comprobar_ventas():
+    return float(input("Ingrese el monto de ventas del vendedor: "))
+
+def meta_cumplida(ventas, meta):
+    return ventas >= meta
+
+def mensaje():
+    print("Meta cumplida")
+
+def calcular_metas(meta):
+    total_vendedores = 0
+    vendedores_meta_alcanzada = 0
+
+    while True:
+        ventas = comprobar_ventas()
+        if ventas <= 0:
+            break
+        total_vendedores += 1
+        if meta_cumplida(ventas, meta):
+            mensaje()
+            vendedores_meta_alcanzada += 1
+
+    return total_vendedores, vendedores_meta_alcanzada
+
+#****************************************ZONA DE CÓDIGO PRINCIPAL**********************************************
+meta_mensual = 5000
+total, cumplidas = calcular_metas(meta_mensual)
+
+print("Total de vendedores:", total)
+print("Vendedores que cumplieron la meta :", cumplidas)
